@@ -34,7 +34,8 @@ def check_q(randomthingy):
     for word in randomthingy:
         if word.lower() in quiti:
             load_oscillate('returning', 'Tip: ' + rand.choice(generic_tip))
-            exec(open('menu.py', 'r').read())
+            with open('menu.py') as newgame:
+                exec(newgame.read())
 
 
 ###########################
@@ -373,7 +374,8 @@ if __name__ == "__main__":
                 else:
                     cls()
                     load_oscillate('returning', 'Tip: ' + rand.choice(generic_tip))
-                    exec(open('menu.py', 'r').read())
+                    with open('menu.py') as newgame:
+                        exec(newgame.read())
 
             elif not winning()[0]:
                 full = 0
@@ -397,7 +399,8 @@ if __name__ == "__main__":
                     else:
                         cls()
                         load_oscillate('returning', 'Tip: ' + rand.choice(generic_tip))
-                        exec(open('menu.py', 'r').read())
+                        with open('menu.py') as newgame:
+                            exec(newgame.read())
 
             # Player 2
             place_piece(player2[1], people(two_player))
@@ -428,7 +431,8 @@ if __name__ == "__main__":
                 else:
                     cls()
                     load_oscillate('returning', 'Tip: ' + rand.choice(generic_tip))
-                    exec(open('menu.py', 'r').read())
+                    with open('menu.py') as newgame:
+                        exec(newgame.read())
 
             elif not winning()[0]:
                 full = 0
@@ -454,4 +458,5 @@ if __name__ == "__main__":
                     else:
                         cls()
                         load_oscillate('returning', 'Tip: ' + rand.choice(generic_tip))
-                        exec(open('menu.py', 'r').read())
+                        with open('menu.py') as newgame:
+                            exec(newgame.read())

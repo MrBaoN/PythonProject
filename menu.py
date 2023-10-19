@@ -89,5 +89,6 @@ if __name__ == "__main__":
 
     print('Great choice!')
     load_oscillate('loading', 'Tip: ' + rand.choice(game_tip[tip]))
-    exec(open(gamename).read())
+    with open(gamename) as newgame:
+        exec(newgame.read())
 
