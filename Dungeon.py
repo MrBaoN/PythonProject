@@ -21,21 +21,22 @@ def savenew(userstat):
     fileclear.close()
 
 
-def valid(inp, x, y):
+def valid(userInput, x, y):
+    """Check if user input will be in range of option x and y for it to be valid, also check if input is quitting"""
     while True:
-        if inp == 'q' or inp == 'quit':
+        if userInput == 'q' or userInput == 'quit':
             savenew(player)
             load_oscillate('returning', 'Tip: ' + rand.choice(generic_tip))
             with open('menu.py') as menu:
                 exec(menu.read())
 
         try:
-            inp = int(inp)
-            if x <= inp <= y:
-                return int(inp)
-            int('urmom')
+            userInput = int(userInput)
+            if x <= userInput <= y:
+                return int(userInput)
+            int('invalid input')
         except:
-            inp = input('Invalid input, please try again: ')
+            userInput = input('Invalid input, please try again: ')
 
 
 def monster_hp(lv_int=1):
@@ -65,13 +66,14 @@ def option(lis):
 
 
 def checkFileEmpty():
+    """Check if saved file is empty"""
     if os.stat("saved_game.txt").st_size == 0:
         return True
     return False
 
 
 def monster_spawn(lv=1, num=1):
-    """Print"""
+    """Spawn monster based on level of player and round they are currently on."""
     if not num % 10:
         num += 1
         if num != 60:
@@ -88,8 +90,14 @@ def monster_spawn(lv=1, num=1):
         return [rand.choice(monster), mons_lv, monster_hp(mons_lv), ceil(4 / 3 * mons_lv), num]
 
 
-# battle phase, find player and monster dmg, health, etc.
+
 def battle(userstat, monster_id):
+    """
+    Battle phase, find player and monster dmg, health, etc. and establish
+    interaction based on chosen option and monster chosen action.
+
+    Return false if died, else return user remaining health
+    """
     charging = 0
     name = monster_id[0]
     monster_lv = monster_id[1]
@@ -145,13 +153,13 @@ def battle(userstat, monster_id):
         elif name in mini_boss:
             if charging == 0:
                 action = rand.choice(mini_action)
-            elif 0 < charging < 5:
+            else:
                 action = 'charge'
 
         else:
             if charging == 0:
                 action = rand.choice(king_action)
-            elif 0 < charging < 5:
+            else:
                 action = 'charge'
 
         if action == 'attack':

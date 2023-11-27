@@ -28,10 +28,10 @@ player2 = ['Player 2', 'marking', 'column', 'another']
 
 ################    Def command    #######################
 
-def check_q(randomthingy):
+def check_q(user_input):
     """Check for quit command"""
-    randomthingy = randomthingy.split()
-    for word in randomthingy:
+    user_input = user_input.split()
+    for word in user_input:
         if word.lower() in quiti:
             load_oscillate('returning', 'Tip: ' + rand.choice(generic_tip))
             with open('menu.py') as newgame:
