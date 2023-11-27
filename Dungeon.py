@@ -50,7 +50,7 @@ def exp(player_lv, monst_lv):
     If monster's level is higher, player gain more exp.
     """
     if monst_lv - player_lv >= 0:
-        print("You have gained", str(((1 + abs(monst_lv - player_lv)) * 10)//1), 'exp.')
+        print("You have gained", str(((1 + abs(monst_lv - player_lv)) * 10) // 1), 'exp.')
         return int((1 + abs(monst_lv - player_lv)) * 10)
     else:
         print("You have gained", str((1 / int(player_lv - monst_lv) * 10) // 1), "exp.")
@@ -90,11 +90,12 @@ def monster_spawn(lv=1, num=1):
         return [rand.choice(monster), mons_lv, monster_hp(mons_lv), ceil(4 / 3 * mons_lv), num]
 
 
-
 def battle(userstat, monster_id):
     """
     Battle phase, find player and monster dmg, health, etc. and establish
     interaction based on chosen option and monster chosen action.
+
+    If monster is boss, then extra action (eg. charge) is added
 
     Return false if died, else return user remaining health
     """
@@ -143,8 +144,8 @@ def battle(userstat, monster_id):
                 elif int(choice) == 2:
                     choice = 'parry'
                     break
-                int('urmom')
-            except:
+                int('invalid choice')
+            except ValueError:
                 choice = input('Invalid input, try again: ')
 
         if name not in mini_boss and name != "DEMON KING":
@@ -222,7 +223,7 @@ def battle(userstat, monster_id):
 
 monst_action = ['attack', 'attack', 'attack', 'evade']
 
-mini_action = ['attack', 'attack', 'attack', 'charge','evade']
+mini_action = ['attack', 'attack', 'attack', 'charge', 'evade']
 
 king_action = ['attack', 'evade', 'evade', 'charge', 'evade', 'attack']
 direction = ['Foward', 'Left', 'Right']
@@ -319,7 +320,7 @@ if __name__ == "__main__":
             try:
                 int(element)
                 player.append(int(element))
-            except:
+            except ValueError:
                 player.append(element)
         file.close()
     else:

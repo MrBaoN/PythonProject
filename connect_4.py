@@ -164,12 +164,12 @@ def restart():
 
 
 ##############################
-def people(x):
+def people(multiplayer):
     """
     Determine moves of bots or ask real player 2 for their move depending on if they play against
     AI or against another player
     """
-    if x:
+    if multiplayer:
         player_2 = input(f'\nPlayer 2, you are {player2[1]}. Choose your column (A to G): ')
         check_q(player_2)
         while True:
@@ -183,7 +183,7 @@ def people(x):
             else:
                 return num
 
-    elif not x:
+    elif not multiplayer:
         sleep(1.5)
         choices = list(column.keys())
         computer = rand.choice(choices)
@@ -276,7 +276,7 @@ if __name__ == "__main__":
               "As implied, the mark do not replace other marks.)")
         sleep(.5)
         print("3. The objective of the game is to get 4 in a row with your own marking, either horizontally,"
-              "vertically, or diagnally before your opponent.")
+              "vertically, or diagonally before your opponent.")
         sleep(.5)
         print('4. If the board get filled up completely and no one wins, the game is considered drawn.\n')
         user_input = False
@@ -325,6 +325,8 @@ if __name__ == "__main__":
         print(f'Player 2 is {player2[1]} then.')
         sleep(2)
 
+        ############ Game Begin ############
+
         while not winning()[0]:
             cls()
             for row in rows:
@@ -333,6 +335,7 @@ if __name__ == "__main__":
             # player 1
             player1[2] = input(f'\nPlayer 1, you are {player1[1]}. Choose your column (A to G): ')
 
+            # Checking if column chosen is not full
             while True:
                 check_q(player1[2])
                 colum = valid(player1[2])
@@ -352,14 +355,14 @@ if __name__ == "__main__":
                 row = ''.join(row)
                 print(row)
 
-            # Check winning
+            # Check winning after each player move.
             if winning()[0]:
                 sleep(.5)
                 coolanima(winning()[2], winning()[3], winning()[4], winning()[5], '|___|', winning()[1][0] + ' won!')
                 user_input = input('Play again? (Y/N): ')
                 check_q(user_input)
 
-                # if yes then restart board
+                # if yes then ask user if they want another game. Also check if quitting
                 if yesno(user_input):
                     restart()
                     user_input = input(
@@ -411,14 +414,14 @@ if __name__ == "__main__":
                 i = ''.join(i)
                 print(i)
 
-            # Check winning
+            # Check winning after each player move
             if winning()[0]:
                 sleep(.5)
                 coolanima(winning()[2], winning()[3], winning()[4], winning()[5], '|___|', winning()[1][0] + ' won!')
                 user_input = input('Play again? (Y/N): ')
                 check_q(user_input)
 
-                # if yes then restart board
+                # if yes then ask player if they want another game, also check for quitting
                 if yesno(user_input):
                     restart()
                     user_input = input(
