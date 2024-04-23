@@ -4,6 +4,6 @@ This is where all of my python project is stored
 These game were designed to play in the terminal window. For the best experience, open the menu.py file first with directly or with cmd terminal with command 
 > python menu.py
 
-to access the other 2 games flawlessly. 
+to access games flawlessly. 
 
 I hope you enjoy!
